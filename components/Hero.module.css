@@ -79,7 +79,7 @@
 }
 .frame {
   position: relative;
-  aspect-ratio: 4 / 4.4;
+  aspect-ratio: 3 / 2.15;
   border-radius: var(--r-4) 0 0 var(--r-4);
   overflow: hidden;
   background: var(--surface-2);
@@ -87,7 +87,7 @@
 }
 .photo {
   object-fit: cover;
-  object-position: center;
+  object-position: 56% center;
 }
 
 /* overlapping coverage card — breaks the image gutter */

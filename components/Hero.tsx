@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { site } from "@/lib/site";
 import { images } from "@/lib/images";
 import Reveal from "./Reveal";
 import styles from "./Hero.module.css";
@@ -9,10 +8,6 @@ export default function Hero() {
     <section className={styles.hero} aria-labelledby="hero-h">
       <div className={`shell ${styles.inner}`}>
         <div className={styles.copy}>
-          <Reveal i={0} as="p" className={`eyebrow ${styles.kick}`}>
-            Mobile detailing · {site.baseArea}
-          </Reveal>
-
           <Reveal i={1} as="h1" className={styles.h1}>
             <span id="hero-h">
               Your car, detailed
@@ -67,7 +62,7 @@ export default function Hero() {
             <Pin />
             <div>
               <span className={styles.coverageLead}>We come to you</span>
-              <span className={styles.coverageSub}>Anywhere within {site.radius}</span>
+              <span className={styles.coverageSub}>Right across West London</span>
             </div>
           </div>
         </Reveal>

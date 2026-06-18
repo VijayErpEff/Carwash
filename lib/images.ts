@@ -5,10 +5,10 @@ const u = (id: string, w = 1600, q = 72) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=${q}`;
 
 export const images = {
-  // moody black car under studio light — the hero
+  // foam hand-wash of a Porsche on a driveway, daylight — the hero
   heroCar: {
-    src: u("1567808291548-fc3ee04dbcf0", 1400),
-    alt: "A black car gleaming under low light in a quiet garage.",
+    src: u("1607860108855-64acf2078ed9", 1500),
+    alt: "A detailer hand-washing a foam-covered Porsche on a driveway in daylight.",
   },
   // detailer applying protection film by hand
   atWork: {

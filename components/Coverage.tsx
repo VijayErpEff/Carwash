@@ -10,7 +10,6 @@ export default function Coverage() {
     <section id="coverage" className={`section ${styles.wrap}`} aria-labelledby="cov-h">
       <div className={`shell ${styles.inner}`}>
         <Reveal className={styles.left}>
-          <p className="eyebrow">Coverage</p>
           <h2 id="cov-h" className={styles.h}>
             Based by Heathrow. We come to most of West London.
           </h2>
