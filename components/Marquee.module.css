@@ -1,0 +1,48 @@
+.strip {
+  position: relative;
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  background: var(--bg-2);
+  padding-block: var(--s-5);
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  will-change: transform;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .track { animation: marquee 34s linear infinite; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .track { justify-content: center; width: 100%; flex-wrap: wrap; }
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+.word {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-variation-settings: "wght" 800, "wdth" 112;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-size: clamp(1.4rem, 3.4vw, 2.4rem);
+  line-height: 1;
+}
+.spark { flex: none; opacity: 0.85; filter: drop-shadow(0 0 6px var(--brand-glow)); }
+
+.fadeL, .fadeR {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(3rem, 12vw, 9rem);
+  pointer-events: none;
+  z-index: 2;
+}
+.fadeL { left: 0; background: linear-gradient(90deg, var(--bg-2), transparent); }
+.fadeR { right: 0; background: linear-gradient(270deg, var(--bg-2), transparent); }

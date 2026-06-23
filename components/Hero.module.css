@@ -1,11 +1,55 @@
 .hero {
   position: relative;
-  padding-top: clamp(6rem, 12vh, 9rem);
+  padding-top: clamp(7rem, 14vh, 10rem);
   padding-bottom: clamp(3rem, 8vh, 6rem);
   overflow: clip;
 }
 
+/* ---------------- ambient bay light ---------------- */
+.ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: clip;
+}
+/* a single electric-blue light that rakes across the scene, once a cycle */
+.rake {
+  position: absolute;
+  top: -20%;
+  left: 0;
+  width: 38%;
+  height: 140%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    oklch(0.70 0.16 244 / 0.16) 45%,
+    oklch(0.82 0.15 235 / 0.28) 50%,
+    oklch(0.70 0.16 244 / 0.16) 55%,
+    transparent
+  );
+  filter: blur(28px);
+  transform: translate3d(-30%, 0, 0) rotate(8deg);
+}
+.drop {
+  position: absolute;
+  bottom: 8%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--brand-bright);
+  box-shadow: 0 0 8px var(--brand-glow);
+  opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .rake { animation: rake 9s var(--ease-out) 1.2s infinite; }
+  .drop { animation: float-up 6s var(--ease-out) infinite; }
+}
+
+/* ---------------- layout ---------------- */
 .inner {
+  position: relative;
+  z-index: var(--z-content);
   display: grid;
   grid-template-columns: 0.92fr 1.08fr;
   align-items: center;
@@ -13,30 +57,32 @@
 }
 
 .copy {
-  max-width: 36rem;
+  max-width: 37rem;
   position: relative;
   z-index: var(--z-content);
 }
-.kick {
-  margin-bottom: var(--s-5);
-}
+.kick { margin-bottom: var(--s-5); }
 
 .h1 {
   font-size: var(--display);
-  font-weight: 500;
-  letter-spacing: -0.035em;
-  line-height: 1.0;
+  font-weight: 800;
+  font-variation-settings: "wght" 800, "wdth" 108;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
+  text-transform: uppercase;
   margin-bottom: var(--s-5);
 }
 .gleam {
-  color: var(--brand);
-  font-style: italic;
-  font-weight: 600;
+  font-style: normal;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .gleam {
+    background-size: 220% 100%;
+    animation: chrome-sweep 7s linear infinite;
+  }
 }
 
-.lede {
-  margin-bottom: var(--s-6);
-}
+.lede { margin-bottom: var(--s-6); }
 
 .cta {
   display: flex;
@@ -45,36 +91,29 @@
   margin-bottom: var(--s-7);
 }
 
-.trust {
+.specs {
   display: flex;
   align-items: center;
   gap: 0.85rem;
   flex-wrap: wrap;
 }
-.stars {
-  color: var(--accent);
-  font-size: var(--step-0);
-  letter-spacing: 0.08em;
-}
-.trustText {
+.spec {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   font-size: var(--step--1);
   color: var(--muted);
 }
-.trustText strong {
-  color: var(--ink);
-  font-weight: 700;
-}
-.dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
+.spec strong { color: var(--ink); font-weight: 700; }
+.line {
+  width: 1px;
+  height: 14px;
   background: var(--line-strong);
 }
 
 /* ---------------- media ---------------- */
 .media {
   position: relative;
-  /* bleed to the right edge of the viewport */
   margin-right: calc(var(--gutter) * -1);
 }
 .frame {
@@ -82,12 +121,39 @@
   aspect-ratio: 3 / 2.15;
   border-radius: var(--r-4) 0 0 var(--r-4);
   overflow: hidden;
-  background: var(--surface-2);
+  background: var(--surface);
   box-shadow: var(--shadow-2);
+  border: 1px solid var(--line-strong);
+  border-right: 0;
 }
 .photo {
   object-fit: cover;
   object-position: 56% center;
+  /* pull the daylight stock into the night palette */
+  filter: saturate(0.85) contrast(1.05) brightness(0.82);
+}
+/* blue-black scrim so the photo sits in the bay */
+.scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, oklch(0.155 0.016 257 / 0.1), oklch(0.155 0.016 257 / 0.55)),
+    linear-gradient(90deg, oklch(0.70 0.16 244 / 0.18), transparent 55%);
+  mix-blend-mode: normal;
+}
+/* a slow specular band drifting across the wet paint */
+.shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 38%, oklch(1 0 0 / 0.14) 50%, transparent 62%);
+  transform: translateX(-100%);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .shine { animation: shine-pan 8s var(--ease-out) 1.6s infinite; }
+}
+@keyframes shine-pan {
+  0%   { transform: translateX(-100%); }
+  60%, 100% { transform: translateX(100%); }
 }
 
 /* overlapping coverage card — breaks the image gutter */
@@ -99,21 +165,36 @@
   display: flex;
   align-items: center;
   gap: 0.85rem;
-  padding: 0.9rem 1.25rem 0.9rem 1rem;
-  background: var(--bg);
-  border: 1px solid var(--line);
+  padding: 0.9rem 1.25rem 0.9rem 1.1rem;
+  background: oklch(0.205 0.020 256 / 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--line-strong);
   border-radius: var(--r-3);
   box-shadow: var(--shadow-2);
 }
-.pin {
+.pulse {
+  position: relative;
   flex: none;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--brand-bright);
+  box-shadow: 0 0 0 0 var(--brand-glow);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pulse { animation: ping 2.4s var(--ease-out) infinite; }
+}
+@keyframes ping {
+  0%   { box-shadow: 0 0 0 0 oklch(0.70 0.185 244 / 0.55); }
+  70%  { box-shadow: 0 0 0 12px oklch(0.70 0.185 244 / 0); }
+  100% { box-shadow: 0 0 0 0 oklch(0.70 0.185 244 / 0); }
 }
 .coverageLead {
   display: block;
   font-family: var(--font-display);
   font-size: var(--step-1);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--ink);
   line-height: 1.1;
 }
@@ -132,31 +213,18 @@
     grid-template-columns: 1fr;
     gap: 2.25rem;
   }
-  .copy {
-    max-width: none;
-    order: 2;
-  }
-  .media {
-    order: 1;
-    margin-right: 0;
-  }
+  .copy { max-width: none; order: 2; }
+  .media { order: 1; margin-right: 0; }
   .frame {
     aspect-ratio: 16 / 11;
     border-radius: var(--r-4);
+    border-right: 1px solid var(--line-strong);
   }
-  .coverageCard {
-    left: 1rem;
-  }
+  .coverageCard { left: 1rem; }
 }
 
 @media (max-width: 520px) {
-  .cta {
-    width: 100%;
-  }
-  .cta :global(.btn) {
-    flex: 1 1 auto;
-  }
-  .coverageCard {
-    padding: 0.75rem 1rem;
-  }
+  .cta { width: 100%; }
+  .cta :global(.btn) { flex: 1 1 auto; }
+  .coverageCard { padding: 0.75rem 1rem; }
 }

@@ -1,11 +1,12 @@
-# Onyx — Mobile Detailing (West London)
+# Terminal Car Wash RM (West London / Heathrow)
 
-> We bring the detail bay to your door.
+> Clean. Shine. Protect. Perfection.
 
-Marketing site for **Onyx**, a mobile car detailing service based in Hounslow,
-minutes from Heathrow, covering West London. A self-contained detail bay rolls
-up to the customer's home or office — express washes, full interior/exterior
-details, and ceramic paint protection.
+Marketing site for **Terminal Car Wash RM**, a mobile car detailing service
+based in Hounslow, minutes from the Heathrow terminals, covering West London. A
+self-contained detail bay rolls up to the customer's home or office — express
+washes, full interior/exterior details, and ceramic paint protection. Dark,
+chrome-and-electric-blue brand with a detailing-bay-at-night aesthetic.
 
 Built as a Next.js site with a clear path to a future booking app.
 

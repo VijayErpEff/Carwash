@@ -1,43 +1,60 @@
 /* ============================================================
-   ONYX — Mobile Detailing · West London
-   Light · OKLCH · white + British racing green + brass
+   TERMINAL CAR WASH · RM — West London / Heathrow
+   Dark · OKLCH · blue-black + electric blue + liquid chrome
+   Voice: a detailing bay at night — wet paint, raking light,
+   chrome reflections, one electric-blue line through it all.
    ============================================================ */
 
 :root {
-  /* ---- Surfaces: white with a whisper of green in the neutrals ---- */
-  --bg:          oklch(1 0 0);
-  --bg-tint:     oklch(0.978 0.005 158);   /* alternating sections */
-  --surface:     oklch(0.992 0.003 158);   /* raised cards on tint */
-  --surface-2:   oklch(0.962 0.006 158);   /* insets, fields */
+  /* ---- Surfaces: blue-black, lifted in measured steps ---- */
+  --bg:          oklch(0.155 0.016 257);
+  --bg-2:        oklch(0.185 0.018 257);   /* alternating sections */
+  --surface:     oklch(0.205 0.020 256);   /* raised cards */
+  --surface-2:   oklch(0.235 0.022 256);   /* insets, fields */
+  --surface-3:   oklch(0.270 0.024 256);   /* hover / pressed */
 
-  /* ---- Ink ---- */
-  --ink:         oklch(0.235 0.013 160);
-  --muted:       oklch(0.455 0.013 160);
-  --faint:       oklch(0.530 0.012 160);
+  /* ---- Ink: cool near-white down to faint ---- */
+  --ink:         oklch(0.965 0.006 250);
+  --muted:       oklch(0.745 0.014 248);
+  --faint:       oklch(0.605 0.014 248);
 
-  /* ---- Hairlines (ink alpha) ---- */
-  --line:        oklch(0.235 0.013 160 / 0.13);
-  --line-strong: oklch(0.235 0.013 160 / 0.24);
+  /* ---- Hairlines (light alpha) ---- */
+  --line:        oklch(0.97 0.01 250 / 0.10);
+  --line-strong: oklch(0.97 0.01 250 / 0.18);
+  --line-bright: oklch(0.97 0.01 250 / 0.32);
 
-  /* ---- Brand: British racing green (156°) ---- */
-  --brand:        oklch(0.395 0.083 156);
-  --brand-hover:  oklch(0.330 0.078 156);
-  --brand-on:     oklch(0.985 0.006 156);   /* text on the green fill */
-  --brand-tint:   oklch(0.395 0.083 156 / 0.07);
-  --brand-tint-2: oklch(0.395 0.083 156 / 0.13);
-  --brand-line:   oklch(0.395 0.083 156 / 0.32);
+  /* ---- Brand: electric blue (244°) — the live wire ---- */
+  --brand:        oklch(0.700 0.160 244);
+  --brand-bright: oklch(0.815 0.150 235);
+  --brand-hover:  oklch(0.755 0.160 244);
+  --brand-deep:   oklch(0.520 0.150 252);
+  --brand-on:     oklch(0.160 0.030 252);   /* dark ink on the blue fill */
+  --brand-tint:   oklch(0.700 0.160 244 / 0.12);
+  --brand-tint-2: oklch(0.700 0.160 244 / 0.20);
+  --brand-line:   oklch(0.700 0.160 244 / 0.45);
+  --brand-glow:   oklch(0.700 0.185 244 / 0.55);
 
-  /* ---- Accent: brass (76°) — marks & rules, used sparingly ---- */
-  --accent:       oklch(0.660 0.110 76);
-  --accent-deep:  oklch(0.505 0.098 73);    /* brass that reads as text on white */
-  --accent-on:    oklch(0.250 0.040 70);
+  /* ---- Chrome: liquid metal for the wordmark & rules ---- */
+  --chrome-1: oklch(0.985 0.004 250);   /* specular highlight */
+  --chrome-2: oklch(0.830 0.008 250);
+  --chrome-3: oklch(0.640 0.010 250);
+  --chrome-4: oklch(0.430 0.012 252);   /* shadow trough */
+  --chrome-grad: linear-gradient(
+    176deg,
+    var(--chrome-1) 0%, var(--chrome-2) 30%, var(--chrome-4) 52%,
+    var(--chrome-2) 70%, var(--chrome-1) 100%
+  );
+
+  /* ---- Accents (used sparingly, on purpose) ---- */
+  --accent:      var(--brand-bright);
+  --accent-deep: var(--brand);
 
   /* ---- Functional ---- */
-  --success: oklch(0.520 0.120 156);
-  --danger:  oklch(0.520 0.205 27);
+  --success: oklch(0.760 0.150 162);
+  --danger:  oklch(0.680 0.195 25);
 
   /* ---- Type ---- */
-  --font-display: var(--font-fraunces), "Fraunces", Georgia, serif;
+  --font-display: var(--font-archivo), "Archivo", ui-sans-serif, system-ui, sans-serif;
   --font-sans:    var(--font-hanken), "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-mono:    var(--font-mono-jb), "JetBrains Mono", ui-monospace, "SF Mono", monospace;
 
@@ -45,7 +62,7 @@
   --step--2: 0.64rem; --step--1: 0.8rem; --step-0: 1rem;
   --step-1: 1.25rem;  --step-2: 1.563rem; --step-3: 1.953rem;
   --step-4: 2.441rem; --step-5: 3.052rem;
-  --display: clamp(2.6rem, 1.5rem + 5vw, 5.25rem);
+  --display: clamp(2.7rem, 1.4rem + 5.6vw, 5.75rem);
 
   /* ---- Spacing ---- */
   --s-1: 0.25rem; --s-2: 0.5rem; --s-3: 0.75rem; --s-4: 1rem;
@@ -55,20 +72,26 @@
   /* ---- Radii ---- */
   --r-1: 0.375rem; --r-2: 0.625rem; --r-3: 1rem; --r-4: 1.5rem; --r-pill: 999px;
 
-  /* ---- Elevation (soft, light-mode) ---- */
-  --shadow-1: 0 1px 2px oklch(0.235 0.02 160 / 0.05), 0 10px 24px -16px oklch(0.235 0.05 160 / 0.18);
-  --shadow-2: 0 2px 4px oklch(0.235 0.02 160 / 0.04), 0 36px 64px -34px oklch(0.235 0.06 160 / 0.28);
+  /* ---- Elevation (dark: deep black + an optional blue halo) ---- */
+  --shadow-1: 0 1px 2px oklch(0 0 0 / 0.55), 0 14px 30px -18px oklch(0 0 0 / 0.8);
+  --shadow-2: 0 2px 6px oklch(0 0 0 / 0.5), 0 44px 76px -36px oklch(0 0 0 / 0.9);
+  --glow:     0 0 0 1px var(--brand-line), 0 22px 60px -22px var(--brand-glow);
 
   /* ---- Motion ---- */
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);   /* quint-ish ease-out */
   --ease-in:  cubic-bezier(0.7, 0, 0.84, 0);
-  --dur-1: 150ms; --dur-2: 240ms; --dur-3: 360ms; --dur-4: 600ms;
+  --dur-1: 150ms; --dur-2: 240ms; --dur-3: 360ms; --dur-4: 640ms;
 
   /* ---- z-index scale ---- */
-  --z-base: 0; --z-content: 2; --z-nav: 50; --z-overlay: 80; --z-toast: 90;
+  /* sheet sits just below the nav bar so the burger/X stays clickable
+     and the bar's solid background caps the sheet cleanly */
+  --z-base: 0; --z-content: 2; --z-sheet: 45; --z-nav: 50;
+  --z-overlay: 80; --z-toast: 90;
 
-  --maxw: 78rem;
+  --maxw: 80rem;
   --gutter: clamp(1.25rem, 5vw, 4rem);
+
+  color-scheme: dark;
 }
 
 /* ---------------- reset ---------------- */
@@ -85,8 +108,23 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-feature-settings: "ss01";
+  font-feature-settings: "ss01", "cv01";
   overflow-x: clip;
+  position: relative;
+}
+
+/* Ambient bay light — a fixed blue wash up top, a chrome-cool floor below.
+   Painted once, no animation; the page scrolls over it. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(120% 60% at 78% -8%, oklch(0.70 0.16 244 / 0.18), transparent 60%),
+    radial-gradient(90% 50% at 8% 4%, oklch(0.52 0.15 252 / 0.14), transparent 55%),
+    radial-gradient(140% 90% at 50% 120%, oklch(0.30 0.03 256 / 0.6), transparent 70%);
 }
 
 img, picture, svg, canvas { display: block; max-width: 100%; }
@@ -96,17 +134,18 @@ a { color: inherit; text-decoration: none; }
 
 h1, h2, h3 {
   font-family: var(--font-display);
-  font-weight: 500;
-  line-height: 1.05;
-  letter-spacing: -0.025em;
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
   text-wrap: balance;
   font-optical-sizing: auto;
+  font-variation-settings: "wght" 700, "wdth" 105;
   color: var(--ink);
 }
 p { text-wrap: pretty; }
 
 :focus-visible {
-  outline: 2px solid var(--brand);
+  outline: 2px solid var(--brand-bright);
   outline-offset: 3px;
   border-radius: 3px;
 }
@@ -117,7 +156,7 @@ p { text-wrap: pretty; }
   z-index: var(--z-toast);
   background: var(--brand); color: var(--brand-on);
   padding: 0.6rem 1.1rem; border-radius: 0 0 var(--r-2) var(--r-2);
-  font-weight: 600;
+  font-weight: 700;
   transition: transform var(--dur-2) var(--ease-out);
 }
 .skip-link:focus-visible { transform: translate(-50%, 0); }
@@ -128,34 +167,52 @@ p { text-wrap: pretty; }
   margin-inline: auto; padding-inline: var(--gutter);
 }
 
-/* eyebrow label — used sparingly, not on every section */
+/* terminal-style label — the technical voice. Used sparingly. */
 .eyebrow {
   font-family: var(--font-mono);
   font-size: var(--step--1);
-  letter-spacing: 0.04em;
-  color: var(--accent-deep);
-  display: inline-flex; align-items: center; gap: 0.6em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-bright);
+  display: inline-flex; align-items: center; gap: 0.7em;
 }
 .eyebrow::before {
-  content: ""; width: 1.8em; height: 1px;
-  background: var(--accent); opacity: 0.8;
+  content: ""; width: 1.6em; height: 1px;
+  background: linear-gradient(90deg, var(--brand-bright), transparent);
 }
 
 .lede {
   color: var(--muted);
   font-size: var(--step-1);
   line-height: 1.55;
-  max-width: 58ch;
+  max-width: 60ch;
+}
+
+/* Liquid-chrome wordmark — the ONE place metallic text is intentional
+   brand identity, not decoration. Animated specular sweep. */
+.chrome {
+  background: linear-gradient(
+    176deg,
+    var(--chrome-1) 0%, var(--chrome-2) 26%, var(--chrome-4) 50%,
+    oklch(0.78 0.02 250) 58%, var(--chrome-1) 84%, var(--chrome-2) 100%
+  );
+  background-size: 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Buttons */
 .btn {
+  position: relative;
   display: inline-flex; align-items: center; justify-content: center; gap: 0.55em;
-  min-height: 50px;
-  padding: 0.9rem 1.5rem;
+  min-height: 52px;
+  padding: 0.95rem 1.6rem;
   border-radius: var(--r-pill);
-  font-weight: 600; font-size: var(--step-0); letter-spacing: -0.01em;
+  font-weight: 600; font-size: var(--step-0); letter-spacing: -0.005em;
   border: 1px solid transparent; cursor: pointer;
+  overflow: hidden;
   transition: transform var(--dur-1) var(--ease-out),
               background-color var(--dur-2) var(--ease-out),
               box-shadow var(--dur-2) var(--ease-out),
@@ -164,37 +221,48 @@ p { text-wrap: pretty; }
 }
 .btn:active { transform: translateY(1px) scale(0.99); }
 
+/* a single light sweeps across primary buttons on hover */
 .btn-primary {
-  background: var(--brand); color: var(--brand-on);
-  box-shadow: var(--shadow-1);
+  background: linear-gradient(180deg, var(--brand-bright), var(--brand) 60%);
+  color: var(--brand-on);
+  box-shadow: 0 1px 0 oklch(1 0 0 / 0.25) inset, 0 10px 28px -12px var(--brand-glow);
+}
+.btn-primary::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(105deg, transparent 30%, oklch(1 0 0 / 0.55) 48%, transparent 62%);
+  transform: translateX(-130%);
+  transition: transform var(--dur-4) var(--ease-out);
 }
 .btn-primary:hover {
-  background: var(--brand-hover);
-  box-shadow: 0 14px 32px -14px oklch(0.395 0.083 156 / 0.5);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 1px 0 oklch(1 0 0 / 0.3) inset, 0 18px 40px -14px var(--brand-glow);
 }
+.btn-primary:hover::after { transform: translateX(130%); }
 
 .btn-ghost {
-  background: transparent; color: var(--ink);
+  background: oklch(0.97 0.01 250 / 0.02);
+  color: var(--ink);
   border-color: var(--line-strong);
 }
 .btn-ghost:hover {
   background: var(--brand-tint);
-  border-color: var(--brand);
-  color: var(--brand);
-  transform: translateY(-1px);
+  border-color: var(--brand-line);
+  color: var(--brand-bright);
+  transform: translateY(-2px);
 }
 
 .btn[disabled], .btn[aria-disabled="true"] {
-  opacity: 0.55; cursor: not-allowed; transform: none; box-shadow: none;
+  opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none;
 }
+.btn-primary[disabled]::after { display: none; }
 
 .divider { height: 1px; background: var(--line); border: 0; }
 
 /* ---------------- reveal (visible by default) ---------------- */
 @media (prefers-reduced-motion: no-preference) {
   html.js [data-reveal] {
-    opacity: 0; transform: translateY(20px);
+    opacity: 0; transform: translateY(22px);
     transition: opacity var(--dur-4) var(--ease-out), transform var(--dur-4) var(--ease-out);
     transition-delay: var(--reveal-delay, 0ms);
     will-change: opacity, transform;
@@ -204,10 +272,36 @@ p { text-wrap: pretty; }
 
 .section { padding-block: clamp(var(--s-8), 11vh, var(--s-10)); position: relative; }
 
+/* ---------------- signature motion ---------------- */
+@keyframes chrome-sweep {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: -200% 0%; }
+}
+@keyframes brand-pulse {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 1; }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes rake {
+  0%   { transform: translate3d(-30%, 0, 0) rotate(8deg); opacity: 0; }
+  18%  { opacity: 0.9; }
+  82%  { opacity: 0.9; }
+  100% { transform: translate3d(130%, 0, 0) rotate(8deg); opacity: 0; }
+}
+@keyframes float-up {
+  from { transform: translateY(0); opacity: 0; }
+  20%  { opacity: 0.7; }
+  to   { transform: translateY(-120px); opacity: 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }

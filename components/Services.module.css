@@ -30,37 +30,39 @@
   flex-direction: column;
   padding: clamp(1.5rem, 2.4vw, 2.25rem);
   border-radius: var(--r-4);
-  background: var(--bg);
+  background: var(--surface);
   border: 1px solid var(--line-strong);
   transition: transform var(--dur-2) var(--ease-out), border-color var(--dur-2) var(--ease-out),
     box-shadow var(--dur-2) var(--ease-out);
 }
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-2);
+  box-shadow: var(--glow);
   border-color: var(--brand-line);
 }
 
-/* featured card breaks rhythm: deep racing-green, lifted, white text */
+/* featured card breaks rhythm: electric-blue, lifted, dark ink */
 .featured {
-  background: var(--brand);
-  border-color: var(--brand);
+  background: linear-gradient(165deg, var(--brand-bright), var(--brand) 55%, var(--brand-deep));
+  border-color: var(--brand-bright);
   transform: translateY(-1.5rem);
-  box-shadow: var(--shadow-2);
+  box-shadow: 0 30px 70px -28px var(--brand-glow);
   color: var(--brand-on);
 }
 .featured:hover {
   transform: translateY(-2rem);
+  box-shadow: 0 40px 80px -26px var(--brand-glow);
 }
 
 .most {
   align-self: flex-start;
   font-family: var(--font-mono);
   font-size: var(--step--2);
-  letter-spacing: 0.04em;
-  color: var(--accent-on);
-  background: var(--accent);
-  padding: 0.32em 0.75em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: oklch(0.16 0.03 252 / 0.55);
+  padding: 0.34em 0.8em;
   border-radius: var(--r-pill);
   font-weight: 600;
   margin-bottom: var(--s-4);
@@ -80,7 +82,7 @@
   margin-bottom: var(--s-5);
   max-width: 36ch;
 }
-.featured .blurb { color: oklch(0.985 0.006 156 / 0.82); }
+.featured .blurb { color: oklch(0.16 0.03 252 / 0.82); }
 
 .feats {
   list-style: none;
@@ -100,7 +102,7 @@
 }
 .featured .feats li { color: var(--brand-on); }
 .feats svg { flex: none; margin-top: 0.15em; }
-.featured .feats svg path { stroke: var(--accent); }
+.featured .feats svg path { stroke: var(--brand-on); }
 
 .cardFoot {
   display: flex;
@@ -109,7 +111,7 @@
   padding-top: var(--s-5);
   border-top: 1px solid var(--line);
 }
-.featured .cardFoot { border-top-color: oklch(0.985 0.006 156 / 0.22); }
+.featured .cardFoot { border-top-color: oklch(0.16 0.03 252 / 0.25); }
 
 .price {
   display: flex;
@@ -124,7 +126,7 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
-.featured .from { color: oklch(0.985 0.006 156 / 0.7); }
+.featured .from { color: oklch(0.16 0.03 252 / 0.7); }
 .amount {
   font-family: var(--font-display);
   font-size: var(--step-3);
@@ -138,16 +140,18 @@
   font-size: var(--step--2);
   color: var(--muted);
 }
-.featured .dur { color: oklch(0.985 0.006 156 / 0.75); }
+.featured .dur { color: oklch(0.16 0.03 252 / 0.78); }
 
-/* the featured card's ghost button needs to read on green */
+/* the featured card's button reads as a dark chip on the electric-blue fill */
 .featured .cardFoot :global(.btn-primary) {
   background: var(--bg);
-  color: var(--brand);
+  color: var(--brand-bright);
+  box-shadow: 0 1px 0 var(--line-bright) inset;
 }
+.featured .cardFoot :global(.btn-primary)::after { display: none; }
 .featured .cardFoot :global(.btn-primary):hover {
-  background: var(--bg-tint);
-  color: var(--brand-hover);
+  background: var(--surface);
+  color: var(--brand-bright);
 }
 .cardFoot :global(.btn) { width: 100%; }
 
@@ -162,7 +166,7 @@
   padding: clamp(1.5rem, 3vw, 2.25rem);
   border-radius: var(--r-4);
   border: 1px solid var(--line);
-  background: var(--bg-tint);
+  background: var(--bg-2);
 }
 .fleetH {
   font-size: var(--step-2);

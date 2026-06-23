@@ -1,6 +1,7 @@
 import RevealInit from "@/components/RevealInit";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
+import Marquee from "@/components/Marquee";
 import Services from "@/components/Services";
 import Showcase from "@/components/Showcase";
 import Process from "@/components/Process";
@@ -16,6 +17,7 @@ export default function Page() {
       <Nav />
       <main id="main">
         <Hero />
+        <Marquee />
         <Services />
         <Showcase />
         <Process />

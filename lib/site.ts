@@ -1,13 +1,14 @@
 export const site = {
-  name: "Onyx",
-  full: "Onyx Mobile Detailing",
-  tagline: "We bring the detail bay to your door.",
+  name: "Terminal",
+  full: "Terminal Car Wash RM",
+  region: "RM",
+  tagline: "Clean. Shine. Protect. Perfection.",
   phone: "07700 900142",
   phoneHref: "tel:+447700900142",
-  email: "hello@onyxdetailing.co.uk",
+  email: "bookings@terminalcarwash.co.uk",
   hours: "Mon–Sat · 8am – 6pm",
   baseArea: "West London",
-  base: "Hounslow, a few minutes from Heathrow",
+  base: "Hounslow, a few minutes from the Heathrow terminals",
   radius: "10 miles of Heathrow",
 };
 
@@ -92,7 +93,7 @@ export const testimonials = [
   },
   {
     quote:
-      "I run six vans out of Feltham. Onyx keeps the whole fleet presentable on a standing weekly slot and I never have to chase it. One tidy invoice at the end of the month.",
+      "I run six vans out of Feltham. Terminal keeps the whole fleet presentable on a standing weekly slot and I never have to chase it. One tidy invoice at the end of the month.",
     name: "Desmond R.",
     meta: "Fleet account · Feltham",
   },
