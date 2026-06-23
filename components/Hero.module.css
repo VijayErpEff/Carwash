@@ -116,37 +116,34 @@
   position: relative;
   margin-right: calc(var(--gutter) * -1);
 }
-.frame {
+/* the logo stage — a lit dark plinth the brand crest sits on */
+.stage {
   position: relative;
   aspect-ratio: 3 / 2.15;
   border-radius: var(--r-4) 0 0 var(--r-4);
   overflow: hidden;
-  background: var(--surface);
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(85% 75% at 50% 42%, oklch(0.70 0.16 244 / 0.22), transparent 70%),
+    linear-gradient(180deg, var(--surface), var(--bg));
   box-shadow: var(--shadow-2);
   border: 1px solid var(--line-strong);
   border-right: 0;
 }
-.photo {
-  object-fit: cover;
-  object-position: 56% center;
-  /* pull the daylight stock into the night palette */
-  filter: saturate(0.85) contrast(1.05) brightness(0.82);
+.logo {
+  width: clamp(15rem, 78%, 34rem);
+  height: auto;
+  filter: drop-shadow(0 12px 40px var(--brand-glow));
+  user-select: none;
 }
-/* blue-black scrim so the photo sits in the bay */
-.scrim {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, oklch(0.155 0.016 257 / 0.1), oklch(0.155 0.016 257 / 0.55)),
-    linear-gradient(90deg, oklch(0.70 0.16 244 / 0.18), transparent 55%);
-  mix-blend-mode: normal;
-}
-/* a slow specular band drifting across the wet paint */
+/* a slow specular band drifting across the crest */
 .shine {
   position: absolute;
   inset: 0;
-  background: linear-gradient(115deg, transparent 38%, oklch(1 0 0 / 0.14) 50%, transparent 62%);
+  background: linear-gradient(115deg, transparent 40%, oklch(1 0 0 / 0.10) 50%, transparent 60%);
   transform: translateX(-100%);
+  pointer-events: none;
 }
 @media (prefers-reduced-motion: no-preference) {
   .shine { animation: shine-pan 8s var(--ease-out) 1.6s infinite; }
@@ -215,11 +212,12 @@
   }
   .copy { max-width: none; order: 2; }
   .media { order: 1; margin-right: 0; }
-  .frame {
-    aspect-ratio: 16 / 11;
+  .stage {
+    aspect-ratio: 16 / 10;
     border-radius: var(--r-4);
     border-right: 1px solid var(--line-strong);
   }
+  .logo { width: clamp(14rem, 70%, 26rem); }
   .coverageCard { left: 1rem; }
 }
 

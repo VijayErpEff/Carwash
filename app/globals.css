@@ -188,19 +188,26 @@ p { text-wrap: pretty; }
   max-width: 60ch;
 }
 
-/* Liquid-chrome wordmark — the ONE place metallic text is intentional
-   brand identity, not decoration. Animated specular sweep. */
+/* Liquid-chrome text — the deliberate metallic brand accent. The gradient is
+   tuned to stay legible on dark (no dark trough mid-letter), and falls back to
+   a solid bright chrome where background-clip:text isn't supported (older
+   mobile webviews) so the words never vanish. */
 .chrome {
-  background: linear-gradient(
-    176deg,
-    var(--chrome-1) 0%, var(--chrome-2) 26%, var(--chrome-4) 50%,
-    oklch(0.78 0.02 250) 58%, var(--chrome-1) 84%, var(--chrome-2) 100%
-  );
-  background-size: 100% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+  color: var(--chrome-1);
+}
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .chrome {
+    background: linear-gradient(
+      176deg,
+      var(--chrome-1) 0%, var(--chrome-2) 34%, oklch(0.70 0.02 250) 50%,
+      var(--chrome-2) 66%, var(--chrome-1) 100%
+    );
+    background-size: 100% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 /* Buttons */

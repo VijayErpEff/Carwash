@@ -1,5 +1,3 @@
-import Image from "next/image";
-import { images } from "@/lib/images";
 import { site } from "@/lib/site";
 import Reveal from "./Reveal";
 import styles from "./Hero.module.css";
@@ -58,16 +56,16 @@ export default function Hero() {
         </div>
 
         <Reveal i={2} className={styles.media}>
-          <div className={styles.frame}>
-            <Image
-              src={images.heroCar.src}
-              alt={images.heroCar.alt}
-              fill
-              priority
-              sizes="(max-width: 980px) 100vw, 52vw"
-              className={styles.photo}
+          <div className={styles.stage}>
+            {/* the real brand crest, composited onto the dark stage */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo.png"
+              alt="Terminal Car Wash RM"
+              width={866}
+              height={598}
+              className={styles.logo}
             />
-            <span className={styles.scrim} aria-hidden="true" />
             <span className={styles.shine} aria-hidden="true" />
           </div>
 

@@ -1,20 +1,24 @@
 import { ImageResponse } from "next/og";
-import { iconSquareSvg } from "@/lib/brandArt";
+import { logoDataUri, fitByWidth } from "@/lib/brandArt";
 
 export const runtime = "nodejs";
 
 export function GET(req: Request) {
   const s = Math.max(48, Math.min(1024, Number(new URL(req.url).searchParams.get("s")) || 512));
-  const svg = iconSquareSvg(s);
+  const { w, h } = fitByWidth(s, 0.84);
   return new ImageResponse(
     (
-      <div style={{ display: "flex", width: "100%", height: "100%" }}>
-        <img
-          width={s}
-          height={s}
-          src={`data:image/svg+xml;utf8,${encodeURIComponent(svg)}`}
-          alt=""
-        />
+      <div
+        style={{
+          display: "flex",
+          width: "100%",
+          height: "100%",
+          background: "#000000",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <img width={w} height={h} src={logoDataUri()} alt="" />
       </div>
     ),
     { width: s, height: s }
