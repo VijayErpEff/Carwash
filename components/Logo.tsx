@@ -7,7 +7,7 @@ type Props = { className?: string; height?: number };
  * logo on a dark disc with a white ring that dissolves into the light page.
  * A masked sheen makes it glint on load / hover.
  */
-export default function Logo({ className, height = 46 }: Props) {
+export default function Logo({ className, height = 92 }: Props) {
   return (
     <span
       className={`${styles.lockup} ${className ?? ""}`}
