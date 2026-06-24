@@ -2,17 +2,22 @@
   position: fixed;
   inset: 0 0 auto 0;
   z-index: var(--z-nav);
+  /* dark surface scope — remap tokens so children render light-on-dark */
+  --ink: oklch(0.965 0.008 250);
+  --muted: oklch(0.76 0.022 250);
+  --faint: oklch(0.62 0.02 250);
+  --line: oklch(0.97 0.01 250 / 0.12);
+  --line-strong: oklch(0.97 0.01 250 / 0.22);
+  --surface: oklch(0.255 0.02 256);
+  background: oklch(0.155 0.016 256 / 0.86);
+  backdrop-filter: blur(14px) saturate(1.2);
+  border-bottom: 1px solid var(--line);
   transition: background-color var(--dur-3) var(--ease-out),
-    backdrop-filter var(--dur-3) var(--ease-out),
-    border-color var(--dur-3) var(--ease-out),
     box-shadow var(--dur-3) var(--ease-out);
-  border-bottom: 1px solid transparent;
 }
 .solid {
-  background: oklch(0.99 0.004 248 / 0.78);
-  backdrop-filter: blur(16px) saturate(1.4);
-  border-bottom-color: var(--line);
-  box-shadow: 0 1px 0 var(--line), 0 18px 40px -32px oklch(0.30 0.05 256 / 0.4);
+  background: oklch(0.145 0.016 256 / 0.94);
+  box-shadow: 0 1px 0 var(--line), 0 20px 44px -30px oklch(0 0 0 / 0.7);
 }
 
 .inner {
@@ -38,7 +43,7 @@
 }
 .link:hover {
   color: var(--ink);
-  background: var(--brand-tint);
+  background: var(--brand-tint-2);
 }
 
 .actions {
@@ -81,19 +86,20 @@
 .burger span[data-open="true"]:first-child { top: 22px; transform: rotate(45deg); }
 .burger span[data-open="true"]:last-child { bottom: 22px; transform: rotate(-45deg); }
 
-/* ---------------- mobile sheet ---------------- */
+/* ---------------- mobile sheet (dark, matches nav) ---------------- */
 .sheet {
   position: fixed;
   inset: 0;
   z-index: var(--z-sheet);
-  /* SOLID, opaque surface — never see-through */
+  --ink: oklch(0.965 0.008 250);
+  --muted: oklch(0.76 0.022 250);
+  --line: oklch(0.97 0.01 250 / 0.12);
   background:
-    radial-gradient(120% 55% at 82% 0%, var(--brand-tint), transparent 55%),
-    var(--bg);
+    radial-gradient(120% 55% at 82% 0%, var(--brand-tint-2), transparent 55%),
+    oklch(0.155 0.016 256);
   display: grid;
   align-content: start;
   padding: calc(74px + var(--s-5)) var(--gutter) var(--s-7);
-  /* hidden state */
   opacity: 0;
   visibility: hidden;
   transform: translateY(-8px);
@@ -111,6 +117,7 @@
     transform var(--dur-3) var(--ease-out),
     visibility 0s;
 }
+.sheet :global(.divider) { background: var(--line); }
 
 .sheetInner {
   display: flex;
@@ -147,7 +154,6 @@
 }
 .sheet :global(.btn) { width: 100%; }
 
-/* staggered entrance for the links */
 @media (prefers-reduced-motion: no-preference) {
   .sheet[data-open="true"] .sheetLink,
   .sheet[data-open="true"] .sheetPhone,

@@ -1,8 +1,15 @@
 .footer {
-  background: var(--bg-2);
-  border-top: 1px solid var(--line);
+  /* dark surface scope — remap tokens so children render light-on-dark */
+  --ink: oklch(0.965 0.008 250);
+  --muted: oklch(0.76 0.022 250);
+  --faint: oklch(0.6 0.02 250);
+  --line: oklch(0.97 0.01 250 / 0.12);
+  --accent-deep: var(--brand-bright);
+  background: oklch(0.155 0.016 256);
+  border-top: 1px solid oklch(0.97 0.01 250 / 0.1);
   padding-top: var(--s-9);
 }
+.footer :global(.divider) { background: var(--line); }
 
 .top {
   display: grid;

@@ -3,10 +3,9 @@ import styles from "./Logo.module.css";
 type Props = { className?: string; height?: number };
 
 /**
- * The original Terminal Car Wash RM logo, colours redone for the light theme —
- * the chrome/text/car shifted to a dark gunmetal (gloss & bevels preserved) and
- * the spray kept electric blue, with the black background knocked out. Same
- * artwork, just recoloured so it reads on white. A masked sheen makes it glint.
+ * The original Terminal Car Wash RM logo, in full colour (transparent
+ * background). It lives on the dark nav + footer, where the chrome, car and
+ * electric spray read exactly as designed. A masked sheen makes it glint.
  */
 export default function Logo({ className, height = 48 }: Props) {
   return (
@@ -17,7 +16,7 @@ export default function Logo({ className, height = 48 }: Props) {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         className={styles.img}
-        src="/logo-light.png"
+        src="/logo.png"
         alt=""
         aria-hidden="true"
         draggable={false}
